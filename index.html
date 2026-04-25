@@ -3,9 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel ="stylesheet" href="css/styles.css">
     <title>Control de gastos</title>
 </head>
 <body>
+    <header>
+        <h1 id="Titulo">Control de gastos</h1>
+
+    </header>
     
+
+    <main class="container">
+
+        <section class="balance">
+
+        <h2> Balance </h2>
+        <p id="balance"> $ 0.00 </p>
+        </section>
+
+        <section class="form-section">
+            <h2> Agregar gasto </h2>
+
+            <form id="form-gasto"></form>
+                <input
+                    type="text"
+                    id = "descripcion"
+                    placeholder="Descripción del gasto"
+                    required
+                >
+
+                <input
+                    type="number"
+                    id= "monto"
+                    placeholder="Monto (ej: 5000)"
+                    required
+                >
+
+                <select id="categoria">
+
+                    <option value= "general"> General</option>
+                    <option value="comida"> Comida </option>
+                    <option value="transporte"> Transporte</option>
+                    <option value="entretenimiento"> Entretenimiento</option>
+
+
+                </select>
+
+                <button type="submit"> Agregar gasto </button>
+            </form>
+        </section>
+
+        <!-- gastos-->
+
+        <section class="lista-section">
+            <h2>Movimientos</h2>
+            <ul id="lista-gastos">
+
+            </ul>
+            
+        </section>
+    </main>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
+
+
+    
+
+
+
+
+
+
+
+    </main>
+
+    
+
+
+
+
+    
+
+
+
+
+
+
+
 </body>
 </html>
