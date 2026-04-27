@@ -21,6 +21,7 @@ ul {
   border : 2px solid rgb(0, 0, 0); 
   padding: 15px;         
   border-radius: 5px;   
+  list-style-type: none;
 }
 
 
@@ -31,7 +32,7 @@ section {
 }
 
 
-/* Botón agregar */
+/*agregar */
 
 #Agregar {
     background-color: rgb(7, 160, 45);
