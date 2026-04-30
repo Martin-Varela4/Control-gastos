@@ -1,67 +1,49 @@
-const formulario = document.querySelector('#form-gasto')
-const listaGastos = document.querySelector('#lista-gastos')
-const balanceTotal = document.querySelector('#balance')
+// app.js
 
-const descripcionInput = document.querySelector('#descripcion')
-const montoInput = document.querySelector('#monto')
-const categoriaInput = document.querySelector('#categoria')
+import { agregarGasto, calcularBalance, cargarGastos, obtenerGastos} from './gastos.js';
+import { mostrarGasto, actualizarBalanceUI, mostrarTodosLosGastos } from './ui.js';
+
+const formulario = document.querySelector('#form-gasto');
+const listaGastos = document.querySelector('#lista-gastos');
+const balanceTotal = document.querySelector('#balance');
+
+const descripcionInput = document.querySelector('#descripcion');
+const montoInput = document.querySelector('#monto');
+const categoriaInput = document.querySelector('#categoria');
+
+//al iniciar cargar los gastos guardados 
+cargarGastos();
+
+const gastos = obtenerGastos();
+mostrarTodosLosGastos(listaGastos, gastos);
+
+const total = calcularBalance();
+actualizarBalanceUI(balanceTotal, total);
+
+
+// eventos
 
 formulario.addEventListener('submit', function(e) {
-    e.preventDefault()
+    e.preventDefault();
 
-    const descripcion = descripcionInput.value
-    const monto = montoInput.value
-    const categoria = categoriaInput.value
+    const descripcion = descripcionInput.value;
+    const monto = montoInput.value;
+    const categoria = categoriaInput.value;
 
     if (descripcion === '' || monto === '') {
-        alert('Por favor, complete todos los campos')
+        alert('Por favor, complete todos los campos');
         return;
     }
 
+    // lógica
+    const gasto = agregarGasto(descripcion, monto, categoria);
 
-    agregarGasto(descripcion,monto,categoria);
+    // UI
+    mostrarGasto(listaGastos, gasto);
 
-    formulario.reset()
+    const total = calcularBalance();
+    actualizarBalanceUI(balanceTotal, total);
 
-
+    formulario.reset();
 });
-
-//array para almacenar los gastos
-const gastos = []
-//funcion para agregar un gasto a la lista
-function agregarGasto(desc, valor, cat) {
-
-    const montoNumero = Number(valor);
-    //agregar el gasto al array de gastos
-    gastos.push(montoNumero);
-
-
-    //crear un elemento de lista (li)
-    const nuevoGasto = document.createElement('li');
-    
-    
-    nuevoGasto.innerHTML = `
-        <strong>${desc}</strong> - $${montoNumero} 
-        <small>(${cat})</small>
-    `;
-
-    
-    listaGastos.appendChild(nuevoGasto);
-
-    //actualizar el balance total
-    actualizarBalance();
-    
-}
-
-
-function actualizarBalance() {
-    let = total = 0;
-    
-    for (let i = 0; i < gastos.length; i++) {
-        total += gastos[i];
-    }
-    //Mostrar el balance total
-    balanceTotal.textContent= `$${total}`;
-}
-
 
