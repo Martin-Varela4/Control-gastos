@@ -15,6 +15,15 @@ export function agregarGasto(desc, monto, cat) {
     return nuevoGasto;
 }
 
+
+export function eliminarGasto(id) {
+    gastos = gastos.filter(gasto => gasto.id !== id);
+    guardarGastos();
+
+
+}
+
+
 export function obtenerGastos() {
     return gastos;
 }
@@ -30,9 +39,6 @@ export function calcularBalance() {
 }
 
 //LocalStorage (para persistencia de datos)
-
-
-
 
 //cargar desde localStorage
 export function cargarGastos() {

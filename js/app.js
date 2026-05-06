@@ -1,6 +1,6 @@
 // app.js
 
-import { agregarGasto, calcularBalance, cargarGastos, obtenerGastos} from './gastos.js';
+import { agregarGasto, calcularBalance, cargarGastos, obtenerGastos, eliminarGasto} from './gastos.js';
 import { mostrarGasto, actualizarBalanceUI, mostrarTodosLosGastos } from './ui.js';
 
 const formulario = document.querySelector('#form-gasto');
@@ -45,5 +45,25 @@ formulario.addEventListener('submit', function(e) {
     actualizarBalanceUI(balanceTotal, total);
 
     formulario.reset();
+});
+
+
+
+listaGastos.addEventListener('click', function(e) {
+    const boton = e.target.closest('.btn-eliminar');
+
+    if (boton) {
+        const li = boton.closest('li');
+        const id = li ? Number(li.dataset.id) : NaN;
+
+        if (!isNaN(id)) {
+            eliminarGasto(id);
+        }
+
+        if (li) li.remove();
+
+        const total = calcularBalance();
+        actualizarBalanceUI(balanceTotal, total);
+    }
 });
 
