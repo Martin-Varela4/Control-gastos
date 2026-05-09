@@ -8,6 +8,7 @@ export function mostrarGasto(lista, gasto) {
         <strong>${gasto.descripcion}</strong> - $${gasto.monto}
         <small>(${gasto.categoria})</small>
         <button class="btn-eliminar">Eliminar</button>
+        <button class="btn-editar">Editar</button> 
     `;
 
     lista.appendChild(li);
